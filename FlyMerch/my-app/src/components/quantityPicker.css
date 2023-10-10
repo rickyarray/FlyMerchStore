@@ -1,0 +1,19 @@
+.qt-picker label {
+    display: inline;
+    margin: 0 6px;
+    font-weight: 750;
+    color: #D3BC8D;
+}
+
+.qt-picker button {
+    background-color: #D3BC8D;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.qt-picker button:hover {
+    background-color: #B09C6E;
+}
