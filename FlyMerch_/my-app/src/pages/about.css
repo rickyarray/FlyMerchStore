@@ -1,0 +1,56 @@
+/* about.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Azo+Sans:wght@400;700&display=swap');
+
+/* General styling for the about page */
+.about.page {
+    font-family: 'Azo-Sans', sans-serif;
+    background-image: url('./heroimage/fm_tag.png');
+        /* margin: 50px auto; */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        /* Subtle shadow for depth */
+}
+
+/* Styling for the secondary header */
+.about.page h5 {
+    font-size: 20px;
+    color: #b5a089;
+        /* Subtle gold for luxury */
+    margin-bottom: 15px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* Styling for the main header */
+.about.page h1 {
+    font-family: 'Pacifico', cursive;
+        /* Fancy cursive signature font */
+        font-size: 58px;
+        /* Prominent font size */
+        color: #FFD700;
+        /* Bold gold for name */
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        /* Text shadow for depth */
+}
+
+/* Styling for the main content paragraph */
+.about.page p {
+    font-size: 18px;
+    line-height: 1.618;
+        /* Golden ratio line height */
+        color: #e5e5e5;
+        /* Light gray for contrast against deep background */
+    text-align: justify;
+    text-indent: 30px;
+    margin-bottom: 30px;
+        /* Golden ratio spacing between paragraphs */
+}
+
+/* Hover effects for a touch of interactivity */
+.about.page:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease-in-out;
+}
+
