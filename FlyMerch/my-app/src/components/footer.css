@@ -18,24 +18,24 @@ a {
     }
     
 .footer-bottom a:hover {
-    color: #000 !important;
+    color: #ff7200 !important;
     font-size: 1.05em;
     border: 2px solid #FFD700;
     border-radius: 5px;
 }
 
 .footer-bottom {
-    background-color: #8B6914;
+    background-color: rgb(139, 105, 20);
     margin-top: 10px;
     text-align: center;
     padding: 10px 0;
 }
 
 .footer-bottom p {
-    font-size: 18px;
+    font-size: 21px;
         font-style: italic;
         font-weight: 550;
-        color: #000;
+        color: #ff7200;
 }
 .footer-bottom a {
     color: #FFFFFF !important;

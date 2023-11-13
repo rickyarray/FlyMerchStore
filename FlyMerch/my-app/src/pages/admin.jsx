@@ -19,6 +19,7 @@ function Admin() {
  */
 useEffect(function() {
     loadData();
+    loadCoupons();
 
 }, []);
 
@@ -35,7 +36,7 @@ async function loadData() {
         
 
         // create copy, modify it, set it back
-        let copy = {...coupons};
+        let copy = {...product};
         copy[name] = val;
         setProduct(copy);
     }
@@ -48,26 +49,44 @@ async function loadData() {
         
 
         // create copy, modify it, set it back
-        let copy = {...product};
+        let copy = {...coupons};
         copy[name] = val;
         setCoupon(copy);
     }
 
 
-    function saveCoupon() {
-        let service = new DataService();
-        service.saveCoupon(coupons);
+    async function loadCoupons() {
+        const service = new DataService();
+        let couponsResponse = await service.getCoupons();
+        setCoupon(couponsResponse);
     }
 
-    function saveProduct() {
+    async function saveCoupon() {
+        let fixedCoupon = {...coupons};
+        fixedCoupon.discount = Number(coupons.discount);
+
+        const service = new DataService();
+        let savedCoupon = await service.saveCoupon(fixedCoupon);
+
+        let copy = [...coupons];
+        copy.push(savedCoupon);
+        setCoupon(copy);
+    }
+
+    async function saveProduct() {
         console.log(product);
 
 //save to server
-        let copy = {...product};
-        copy.price = parseFloat(copy.price);
-        let service = new DataService();
-        service.saveProduct(copy);
+        let fixedProduct = {...product};
+        fixedProduct.price = parseFloat(product.price);
+        console.log(fixedProduct);
 
+        const service = new DataService();
+        let savedProduct = await service.saveProduct(fixedProduct);
+
+        let copy = [...allProducts];
+        copy.push(savedProduct);
+        setAllProducts(copy);
 
     }
 

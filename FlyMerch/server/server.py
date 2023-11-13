@@ -5,7 +5,7 @@ from bson import ObjectId
 from flask_cors import CORS
 
 app = Flask("server")
-CORS(app) #WARNING: this line will disable CORS
+CORS(app) #WARNING: this line will disable CORS - (DEV Only)
 
 @app.get("/")
 def home():
@@ -28,6 +28,10 @@ def name():
 # ######## API - PRODUCTS ####################################
 # ############  JSON   #######################################
 # ############################################################
+
+# # TODO: move to a real DB
+# catalog = []
+
 
 @app.get("/api/about")
 def about_data():
@@ -57,7 +61,9 @@ def categories():
     
     return json.dumps(all_cats)
 
-
+@app.get("/api/catalog")
+def get_catalog():
+    return json.dumps(catalog)
 
 
 # ***** THIS IS HOW YOU FIX THE ID ... MUST BE DONE EVERYTIME YOU READ FROM DB *****
@@ -108,6 +114,11 @@ def report_total():
     cursor = db.products.find({})
     for prod in cursor:
         total += prod["price"]
+
+    total = {
+        "report": "total",
+        "value": total
+    }
 
     return json.dumps(f"The total value is ${total}")
 
@@ -181,6 +192,31 @@ def get_product_id(id):
         return abort(404, "Product not found")
     
     return json.dumps(fix_id(product))
+
+
+# get search <term>
+@app.get("/api/products/search/<term>")
+def product_search(term):
+    results = []
+    for prod in cursor:
+        if term.lower() in prod['title'].lower():
+            results.append(prod)
+
+    return json.dumps(results)
+
+
+
+@app.get("/api/products/lower/<price>")
+def products_lower(price):
+    results = []
+    real_price = float(price)
+    cursor = db.products.find({price: {'$lte': real_price}})
+
+    for prod in cursor:
+            fix_id(prod)
+            results.append(prod)
+
+    return json.dumps(results)
 
 
 # create delete endpoint to delete a product from db

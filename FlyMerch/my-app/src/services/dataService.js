@@ -65,7 +65,7 @@ class DataService {
 
     async getProducts() {
         //***Uncomment next line to work with local data***
-        return catalog;
+        //return catalog;
 
         //call the server
         const response = await axios.get (this.serverURL + '/api/products');
@@ -86,6 +86,11 @@ class DataService {
 
     async saveProduct(prod) {
         const response = await axios.post(this.serverURL +'/api/products', prod);
+        return response.data;
+    }
+
+    async getCoupons(coupon) {
+        const response = await axios.get(this.serverURL + '/api/coupons', coupon)
         return response.data;
     }
 
